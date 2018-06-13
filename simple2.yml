@@ -1,0 +1,8 @@
+---
+ - hosts: all 
+   become: true 
+   tasks:
+    - name: Install ntp 
+      apt: pkg=ntp state=installed update_cache=true
+    - name: Stop ntpd Service 
+      service: name=ntp state=stopped

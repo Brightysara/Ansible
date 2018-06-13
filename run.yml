@@ -1,0 +1,9 @@
+---
+ - hosts: web1
+   become: true
+   vars:
+     run: "no"
+   tasks:
+    - name: If run is yes then install elinks 
+      command: apt-get install -y elinks 
+      when: run == "yes"

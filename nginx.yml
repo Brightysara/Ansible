@@ -1,0 +1,17 @@
+---
+ - hosts: web1
+   become: true
+   tasks: 
+   - name: install nginx
+     apt: pkg=nginx state=installed update_cache=true
+   - name: Copy content
+     copy: 
+       content: "Hello Sara"
+       dest: /usr/share/nginx/html/index.html
+     notify: start nginx service
+
+   handlers:
+    - name: Start nginx Service
+      service: name=nginx state=restarted   
+
+ 

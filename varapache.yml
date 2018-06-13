@@ -1,0 +1,15 @@
+---
+- hosts: web1 
+  become: true 
+  vars: 
+    package: apache2
+    content: "Hello world"
+  tasks:
+   - name: Install Package 
+     apt: name={{ package }} state=latest
+   - name: Start service
+     service: name={{ package }} state=started
+   - name: copy content
+     copy: 
+       content: "{{ content }}"
+       dest: /var/www/html/index.html
